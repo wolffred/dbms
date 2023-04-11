@@ -7,6 +7,8 @@ select * , case
 end as PriceChange
 from pubs2.titles where titles.price is null;
 
+selesct titles,price, coalesce(price, cast(20 as money)) as new_price from pubs2.titles;
+
 
 select to_char(titles.pubdate,  'DAY, DDth Month, YYYY' ) from pubs2.titles;
 
