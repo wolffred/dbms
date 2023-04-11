@@ -1,0 +1,77 @@
+select * from pubs2.authors
+
+select * from pubs2.titles where titles.price is null;
+
+select * , case 
+	when titles.price is null then '20'
+end as PriceChange
+from pubs2.titles where titles.price is null;
+
+
+select to_char(titles.pubdate,  'DAY, DDth Month, YYYY' ) from pubs2.titles;
+
+select * from pubs2.pub_info pi2 where 
+
+select substring(p.pr_info,1 , 50) from pubs2.pub_info p ; 
+
+
+select pubdate as to_char from titles
+
+
+select now();
+
+select timeofday();
+
+select current_timestamp;
+
+
+select to_date('2018-09-26' , 'YYYY-MM-DD');
+
+select to_timestamp('2018-09-26' , 'YYYY-MM-DD'); 
+
+
+SELECT DATEDIFF(year, '2017/08/25', '2011/08/25') AS DateDiff;
+
+SELECT DATEDIFF ( '03-19-1979' , getdate() )  as myage
+
+select date '2018-12-25' - date '2018-09-26' as days;
+
+select * from titles; 
+
+select title, current_date - titles.pubdate as "Number of days" from titles;
+
+select pubdate from titles;
+
+select extract(year from titles.pubdate) from titles;
+
+select extract(day from titles.pubdate) from titles;
+
+SELECT TIMESTAMPDIFF('2021-11-29', '1996-11-22');
+
+select title, titles.pubdate  - current_date as "Number of days" from titles;
+
+select current_date - date ' 2011-01-01' + ord_date as "Number of days" from sales;
+
+select ord_date, current_date - date ' 2011-01-01' + ord_date as "Number of days" from sales;
+
+select date ' 2023-12-25' - current_date  as "Number of days till Christmas";
+
+select current_date - date ' 2000-04-26' as "Ekow's number of days";
+
+select current_date - pubdate as "Number of days" from titles;
+
+select to_char(ord_date,  'dd-mm-yyyy' ) from pubs2.sales;
+
+select stor_id, to_char(ord_date,  'dd-mm-yyyy' ) from sales ;
+
+
+
+
+
+
+
+
+
+
+
+
