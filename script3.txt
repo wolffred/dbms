@@ -1,0 +1,328 @@
+// day ONE
+
+select * from pubs2.authors
+
+select * from pubs2.titles where titles.price is null;
+
+select * , case 
+	when titles.price is null then '20'
+end as PriceChange
+from pubs2.titles where titles.price is null;
+
+
+select to_char(titles.pubdate,  'DAY, DDth Month, YYYY' ) from pubs2.titles;
+
+select * from pubs2.pub_info pi2 where 
+
+select substring(p.pr_info,1 , 50) from pubs2.pub_info p ; 
+
+
+select pubdate as to_char from titles
+
+
+select now();
+
+select timeofday();
+
+select current_timestamp;
+
+
+select to_date('2018-09-26' , 'YYYY-MM-DD');
+
+select to_timestamp('2018-09-26' , 'YYYY-MM-DD'); 
+
+
+SELECT DATEDIFF(year, '2017/08/25', '2011/08/25') AS DateDiff;
+
+SELECT DATEDIFF ( '03-19-1979' , getdate() )  as myage
+
+select date '2018-12-25' - date '2018-09-26' as days;
+
+select * from titles; 
+
+select title, current_date - titles.pubdate as "Number of days" from titles;
+
+select pubdate from titles;
+
+select extract(year from titles.pubdate) from titles;
+
+select extract(day from titles.pubdate) from titles;
+
+SELECT TIMESTAMPDIFF('2021-11-29', '1996-11-22');
+
+select title, titles.pubdate  - current_date as "Number of days" from titles;
+
+select current_date - date ' 2011-01-01' + ord_date as "Number of days" from sales;
+
+select ord_date, current_date - date ' 2011-01-01' + ord_date as "Number of days" from sales;
+
+select date ' 2023-12-25' - current_date  as "Number of days till Christmas";
+
+select current_date - date ' 2000-04-26' as "Ekow's number of days";
+
+select current_date - pubdate as "Number of days" from titles;
+
+select to_char(ord_date,  'dd-mm-yyyy' ) from pubs2.sales;
+
+select stor_id, to_char(ord_date,  'dd-mm-yyyy' ) from sales where ord_date = ;
+
+
+SELECT SUBSTR(title,1, POSITION(' ' IN title)) as "FIRST WORD" FROM titles;
+
+select 80 - length(title) "CAN ADD" from titles;
+
+select * from authors;
+
+select '--hello--'|| address as "ADDRESS" from authors;
+
+select *, random() as "Price" from titles where price isnull ; 
+
+SELECT SUBSTRING(title, LOCATE(' ', concat( title))+1) from titles;
+
+select substring(title,locate(' ',title)+1) AS "Space" from titles;
+
+SELECT RIGHT(phone, length(phone) - 4) AS phone from authors;
+
+SELECT
+  INITCAP (title) AS new_full_name
+FROM titles;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// day TWO
+
+
+select * from titles;
+
+select type::char(30), avg(price::numeric)::money as "AVERAGE PRICE" from titles group by type;
+
+
+select type::bpchar(30), avg(price::numeric)::money as "AVERAGE PRICE" from titles group by type;
+
+select max(pubdate) - min(pubdate) as "Days" from titles; 
+
+
+select type, pub_id, max(price), min(price), avg(price::numeric) as "AVERAGE PRICE" from titles group by type, pub_id ;                                                    
+
+select type, pub_id , max(price), min(price), avg(price::numeric) as "AVERAGE PRICE" from titles group by type,pub_id 
+having avg(price::numeric) > 20 order by "AVERAGE PRICE";                                                    
+
+select type,  max(price), min(price), avg(price::numeric) as "AVERAGE PRICE" from titles group by type having avg(price::numeric) > 20 order by "AVERAGE PRICE";                                                    
+
+select substring(p.pr_info,1 , 50) from pubs2.pub_info p ; 
+
+select * from titles order by title ;
+
+select title, length(title) as "TITLE LENGTH" from titles order by "TITLE LENGTH" desc;
+
+SELECT  age (timestamp '2020-06-02');
+
+SELECT title, DATEDIFF(month , '2023/04/12', '2011/08/25') AS DateDiff;
+
+
+select title, avg(current_date - pubdate)  from titles group by title;
+
+select title,  avg(((current_date - pubdate)/365) *12)  from titles group by title;
+
+select title (cure)
+
+
+select title, timestamp 
+
+select * from authors;
+
+
+
+select city, count( au_id)  from authors group by city;
+
+select city, count(city) from authors group by au_id;
+
+
+select * from sales;
+
+select max(length(title)) as "TITLE LENGTH" from titles order by "TITLE LENGTH";
+
+
+select max(length(title)) as "TITLE LENGTH" from titles order by "TITLE LENGTH";
+
+
+select title from titles group by title having max(length(title)) = 63 ;
+
+select title, max(length(title)) as "TITLE LENGTH" from titles group by title having max(length(title)) = 63 ;
+
+
+
+select title, max(length(title)) as "TITLE LENGTH" from titles group by title order by "TITLE LENGTH" desc fetch first 2 rows only ;
+
+
+select title, max(length(title)) as "TITLE LENGTH" from titles group by title order by "TITLE LENGTH" desc limit 1 ;
+
+
+select stor_id, count(title_id) as "BOOKS SOLD" from sales group by stor_id;
+
+select stor_id, sum(qty) as "BOOKS SOLD" from sales group by stor_id;
+
+select sum(qty) from sales;
+
+select  count(title_id) from sales;
+
+select * from sales;
+
+select * from sales where stor_id = '7066'::char;
+
+
+select title from titles where title = 'Secrets of Silicon Valley';
+
+
+
+
+
+
+select type, avg(current_date - pubdate)  from titles group by type;
+
+select titles,  (avg((current_date - pubdate)/365) *12)  from titles group by titles;
+
+
+
+
+
+
+
+
+//day THREE
+
+select title_id, titles.pub_id, pub_name from titles inner join publishers on titles.pub_id 
+= publishers.pub_id ;
+
+
+select title, pub_id from titles t 
+
+select pub_name, pr_info from publishers inner join pub_info on publishers.pub_id = pub_info.pub_id 
+
+select pub_name, substring(pr_info,1 , 40) from publishers inner join pub_info on publishers.pub_id = pub_info.pub_id 
+
+
+substring(p.pr_info,1 , 50)
+
+select publishers.pub_id, pub_name, title_id from publishers inner join titles on publishers.pub_id = titles.pub_id 
+
+select titles.title_id, title, ord_num, sum(qty) as "TOTAL SOLD" from titles inner join sales on titles.title_id = sales.title_id group by titles.title_id, title, ord_num 
+
+select titles.title_id, title, ord_num, qty as "TOTAL SOLD" from titles inner join sales on titles.title_id = sales.title_id  
+
+select ord_num, discounttype, discount from sales inner join discounts on sales.stor_id = discounts.stor_id order by ord_num
+
+select au_lname, pub_name from authors inner join publishers on authors.city = publishers.city
+
+select pub_name, substring(pr_info,1 , 40) from publishers full outer join pub_info on publishers.pub_id = pub_info.pub_id 
+
+
+
+
+select * from pub_info
+
+select * from discounts
+
+select * from titleauthor
+
+
+
+select * from publishers
+
+
+select * from titles
+
+select * from sales
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
